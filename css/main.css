@@ -1,0 +1,81 @@
+@import url('https://googleapis.com/css?family=Ubuntu:wght@300&display=swap');
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background: #3b4465;
+}
+
+.main-container {
+    margin: auto;
+
+    height: auto;
+    width: 1000px;
+}
+
+.container-header {
+    height: 75px;
+    width: 100%;
+
+    border-radius: 10px 10px 0 0;
+}
+
+.container-footer {
+    height: 75px;
+    width: 100%;
+
+    border-radius: 0 0 10px 10px;
+}
+
+ul {
+    list-style-type: none;
+    margin-top: 100px;
+    margin-bottom: 10px;
+    padding: 0;
+    overflow: hidden;
+
+    width: 100%;
+    height: 80px;
+
+    font-size: 17px;
+    font-weight: bolder;
+
+    background-color: #50597b;
+
+    border-radius: 10px;
+}
+
+li {
+    float: left;
+    
+}
+
+li a {
+    padding: 30px 15px 30px 15px;
+    
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+li a:hover {
+    color: darkorange;
+    
+}
+
+select {
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 15px;
+
+    background: #eef9fe;
+
+    border-radius: 3px;
+    border: 1px solid lightgray;
+
+    color: dimgray;
+
+    width: 200px;
+    height: 40px;
+}
+

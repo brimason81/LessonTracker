@@ -1,0 +1,43 @@
+table {
+    background: white;
+
+    width: 100%;
+    height: auto;
+
+    border-collapse: collapse; /* tr BORDER DOESN'T WORK WITHOUT THIS*/
+
+}
+
+.h2-table-title {
+    color: black;
+    
+}
+
+tr {
+    height: 60px;
+    width: auto;
+    border-bottom: 2px solid darkgoldenrod;
+}
+
+td {
+    padding-left: 10px;
+    
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.table-header {
+    width: 100%;
+    height: 45px;
+    
+    background: darkgoldenrod;
+}
+
+td a  {
+    text-decoration: none;
+    color: black;
+}
+
+td a:hover {
+    color: darkorange;
+}

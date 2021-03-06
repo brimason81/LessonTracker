@@ -1,0 +1,128 @@
+h3 {
+    text-align: center;
+    text-decoration: underline;
+
+    color: white;
+}
+
+p {
+    padding-top: 10px;
+    text-align: center;
+    color: darkgrey;
+    text-decoration: underline;
+}
+
+/* ADDED 2/28/2021 */
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto; /* - TOO SPREAD APART?*/
+    grid-gap: 10px;
+}
+
+.container {
+    height: auto;
+    width: 300px; /*auto*/
+
+    background: #fff;
+
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+form [type='text'] {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: block;
+    
+    background: #eef9fe;
+
+    height: 40px;
+    width: 200px;
+
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    
+}
+
+form [type='file'] {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: block;
+
+    height: 40px;
+    width: 200px;
+
+    border-radius: 25px;
+    border: 1px solid lawngreen;
+
+    background: lawngreen;
+    color: white;
+}
+
+form [type='password'] {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+
+    background: #eef9fe;
+    
+    height: 40px;
+    width: 200px;
+
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    
+}
+
+form [type="submit"] {
+    display: block;
+
+    margin: 0 auto;
+
+    height: 40px;
+    width: 150px;
+
+    border-radius: 25px;
+    border: none;
+    outline: none;
+
+    font-size: 17px;
+    font-weight: bold;
+    background: lawngreen;
+    color: white;
+    
+}
+
+span, label {
+    color: gray;
+    
+} 
+
+form [type='checkbox'] {
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 80px;
+    border: 2px solid gray;
+}
+
+textarea {
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 80px;
+    border: 2px solid gray;
+}
+
+/*MODIFIED 2/27/2021 - DOESN'T WORK WITHOUT .container width SET TO auto*/
+form #info {
+    
+    margin-left: 50px;
+
+    display: inline-block;
+
+};

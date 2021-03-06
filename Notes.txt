@@ -1,0 +1,50 @@
+FUNCTIONS TO WRITE:
+
+- function that sends email to teachers when have a new student.
+
+12/8/2020
+
+TO FIX:
+students.php
+    - Prompt user for date format
+    - Lesson time - AM/PM?
+        
+12/13/2020
+
+TO FIX:
+
+
+index.php
+    - passCheck() - Not working properly **IMROVED 12/14/2020** moved passMatch on top and now works.  
+        However, does not match when i change 'pass' to 1234, then change 'passMatch' to 1234; must be done top-down,
+        or changes aren't recognized.
+        CHECK JavaScript TUTORIAL - WORDS PER MINUTE FUNCTION THAT STARTED WHEN TYPING STARTED COULD BE USED TO START A WHILE LOOP.
+
+    - DB: 'Teachers' TABLE - is there a better way to store days of week?
+        + Possibly have 'Schedule' TABLE - 7 column, one for each day of the week; TABLE gets populated via
+            TRIGGER when 'studentinfo' or 'teachers' gets changed.
+    
+    - Add 'Phone' and 'Email' to Teachers TRIGGER?
+
+12/17/2020
+
+php function to validate form data? 
+    - would be useful on multiple pages, would clean up code, and reduce redundancy
+
+12/20/2020
+
+- can't delete from 'studentinfo' table.  Possibly because of Trigger?  
+
+12/31/2020
+
+-Use Prepared Statements for database input.  May require creating a mysqli object? 
+    But will prevent the need for escaping, and therefore will still prevent SQL injection
+
+1/3/2021
+    - DB
+        - Lesson_Tracker:  .sql file upload w/ triggers
+        - students:  deleted AFTER DELETE Trigger on Teachers table and studentinfo table - now able to delete Teachers
+
+        Students DB:
+            Teachers Table:
+                - Brian Mason, PASSWORD:  23456

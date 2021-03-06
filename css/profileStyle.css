@@ -1,0 +1,149 @@
+/* ADDED 3/2/2021*/
+h1, h2, h3 {
+     color: white;
+     text-align: center;
+     padding-top: none;
+}
+h1 {
+    font-size: 23px;
+}
+
+h2 {
+    font-size: 17px;
+
+    padding-top: 30px;
+}
+
+p {
+    padding-top: 10px;
+    color: white;
+
+    text-align: center;
+
+}
+
+#new-header-color {
+    background: lightblue;
+    
+}
+
+/* UNIQUE TABLE ON teacherProfile */
+.students { 
+    width: 650px;
+    margin-top: 100px;
+}
+
+.new-color {
+    padding: none;
+    color: #9099b7;
+}
+
+.grid-container, .container-image-grid {
+    display: grid;
+    grid-template-columns: auto auto auto; /* - TOO SPREAD APART?*/
+    grid-gap: 10px;
+}
+
+.container-assignments, .container-image-add{
+    margin: 10px 10px 10px 0;
+    height: auto;
+    width: 300px;
+
+    background: #50597b;
+
+    border-radius: 10px;
+}
+
+.container-add, .container-image-view {
+    margin: 10px 0 10px 10px;
+    height: auto;
+    width: 300px;
+
+    background: #50597b;
+
+    border-radius: 10px;
+}
+
+.container-studentInfo, .container-placeholder{
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    padding: 10px;
+    
+    height: auto;
+    width: 300px;
+
+    background: #50597b;
+    color: white;
+
+    text-align: center;
+    
+    border-radius: 10px;
+}
+
+form [type='text'] {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: block;
+    
+    background: #eef9fe;
+
+    height: 40px;
+    width: 200px;
+
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    
+}
+
+form [type="submit"] {
+    display: block;
+
+    margin: 0 auto;
+
+    height: 40px;
+    width: 150px;
+
+    border-radius: 25px;
+    border: none;
+    outline: none;
+
+    font-size: 14px;
+    font-weight: bold;
+    background: lawngreen;
+    color: white;
+    
+}
+
+form [type="file"] {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: block;
+    
+    background: #eef9fe;
+
+    color: dimgray;
+
+    height: 40px;
+    width: 200px;
+
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+}
+
+
+
+.assignments {
+    width: 100%;
+    height: 45px;
+
+    padding-top: 25px;
+    
+    border-bottom: 2px solid royalblue;
+
+    text-align: center;
+    color: white;
+}
