@@ -2,7 +2,8 @@
 	/*
 		TO DO
 
-		-MAKE <a> TAGS PART OF <ul> - inline...
+		-FIX INSTRUMETS UPDATE
+		-FIX USER FEEDBACK
 	
 	*/
 
@@ -55,7 +56,7 @@
 			$email = mysqli_real_escape_string(dbLogin(), $_POST['email']); 
 			
 			if (validateEmail($email)) {
-				updateInfo('Phone', $phone, $id);
+				updateInfo('Email', $email, $id);
 			} else {
 				echo "Please Enter Valid Email Address";
 			}
@@ -96,65 +97,66 @@
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Student Edit</title>
-	</head>
+<head>
+	<title>Student Edit</title>
+	<link rel="stylesheet" href="css/main.css">
+	
+	<link rel="stylesheet" href="css/formStyle.css">
+</head>
 	<body>
-	<form method="post" action="editStudent.php">
 
-	<!--this doesn't update on Submit when variables are used in method; updates on the following Submit-->
-	<h1>Select element to change for <span><?php echo $row['FirstName'] . " " . $row['LastName']; ?></span></h1>
-	<table width="600px" border="1" cellpadding="1" cellspacing="1">
-	<tr>	
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Phone</th>
-		<th>Email</th>
-		<th>Lesson Start Time </th>
-		<th>Lesson End Time </th>
-		<th>Lesson Day</th>
-		<th>Instrument</th>		
-	</tr>
-	<tr>
-		<td><input type="text" placeholder="First Name" name="fName"></td>
-		<td><input type="text" placeholder="Last Name" name="lName"></td>
-		<td><input type="text" placeholder="555-555-5555" name="phone"></td>
-		<td><input type="text" placeholder="email@domain.com" name="email"></td>
-		<td><input type="text" placeholder="00:00" name="startTime"></td>
-		<td><input type="text" placeholder="00:00" name="endTime"></td>
-		<td>
+	<!--MAIN CONTAINER OPEN-->
+	<div class="main-container">
 		
-			<select name="days" id="days">
-				<option value=""></option>
-				<option value="Monday">Monday</option>
-				<option value="Tuesday">Tuesday</option>
-				<option value="Wednesday">Wednesday</option>
-				<option value="Thursday">Thursday</option>
-				<option value="Friday">Friday</option>
-				<option value="Saturday">Saturday</option>
-				<option value="Sunday">Sunday</option>
-			</select>
+		<!--NAVIGATION-->
+		<ul>
+			<li><a href="studentProfile.php">STUDENT PROFILE</a></li>
+			<li><a href="teacherProfile.php">MY PROFILE PAGE</a></li>
+		</ul>
+		
+		<form method="post" action="editStudent.php">
+			<div class="container" id="edit">
+				<div class="container-header" id="edit-head"><h2>EDIT INFO FOR<span> <?php 
+					echo "<br>" . $row['FirstName'] . " " . $row['LastName'];
+						?></span></h2></div>
+			
+					<!--this doesn't update on Submit when variables are used in method; updates on the following Submit-->
+					<input type="text" placeholder="First Name" name="fName">
+					<input type="text" placeholder="Last Name" name="lName">
+					<input type="text" placeholder="555-555-5555" name="phone">
+					<input type="text" placeholder="email@domain.com" name="email">
 
-		</td>
-		<td>	
+					<!--TIME - ADD A.M. P.M. -->
+					<input type="text" placeholder="00:00" name="startTime">
+					<input type="text" placeholder="00:00" name="endTime">
+					
+					<label for="">LESSON DAY</label>
+					<select name="days" id="days">
+						<option value=""></option>
+						<option value="Monday">Monday</option>
+						<option value="Tuesday">Tuesday</option>
+						<option value="Wednesday">Wednesday</option>
+						<option value="Thursday">Thursday</option>
+						<option value="Friday">Friday</option>
+						<option value="Saturday">Saturday</option>
+						<option value="Sunday">Sunday</option>
+					</select>
 
-			<select name="insts" id="insts">
-				<option value=""></option>
-				<?php
-					for ($i = 0; $i < sizeof($instArray); $i++ ) {
-						echo "<option value=\'$instArray[$i]\'>$instArray[$i] </option>";
-					}	
-				?>
-			</select>
-
-		</td>
-	</tr>
-	</table>	
-	<input type="submit" value="Submit">
-	</form>
-	<p></p>
-	<a href="student.php">Student Profile</a>
-	<p></p>
-	<a href="teacherProfile.php">My Profile Page</a>
+					<!--NEED TO FIX instruments TABLE BEFORE THIS WILL WORK-->
+					<label for="">INSTRUMENT</label>
+					<select name="insts" id="insts">
+						<option value=""></option>
+						<?php
+							for ($i = 0; $i < sizeof($instArray); $i++ ) {
+								echo "<option value=\'$instArray[$i]\'>$instArray[$i] </option>";
+							}	
+						?>
+					</select>
+					<input type="submit" value="Submit">
+				<div class="container-footer"></div>	
+			</div>		
+		</form>
+		<!--MAIN CONTAINER CLOSE-->
+	</div>
 	</body>
 </html>

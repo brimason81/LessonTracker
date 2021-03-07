@@ -1,3 +1,10 @@
+h2 {
+    padding-top: 10px;
+    
+    text-align: center;
+
+    color: white;
+}
 h3 {
     text-align: center;
     text-decoration: underline;
@@ -28,6 +35,14 @@ p {
     margin: 0 auto;
     margin-top: 10px;
     border-radius: 10px;
+}
+
+    #edit {
+        margin: 0 10px 0 10px;
+    }
+
+#edit { /* 3/7/2021 MAYBE DON'T NEED*/
+    width:auto;
 }
 
 form [type='text'] {
@@ -99,8 +114,11 @@ form [type="submit"] {
 
 span, label {
     color: gray;
-    
-} 
+}
+
+label {
+    padding-left: 400px;
+}
 
 form [type='checkbox'] {
     margin: 0 auto;

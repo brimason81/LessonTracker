@@ -11,7 +11,7 @@
     if (!empty($_POST)) {
 
         // OBTAINING USER INFO
-        $query = "SELECT * FROM Teachers WHERE UserName = '$userName'"; // userName
+        $query = "SELECT * FROM teachers WHERE UserName = '$userName'"; // userName
         $result = mysqli_query(dbLogin(), $query);
 
         if (!$result) {

@@ -44,7 +44,7 @@ p {
     grid-gap: 10px;
 }
 
-.container-assignments, .container-image-add{
+.container-assignments, .container-image-add {
     margin: 10px 10px 10px 0;
     height: auto;
     width: 300px;

@@ -19,6 +19,10 @@ body {
     border-radius: 10px 10px 0 0;
 }
 
+    #edit-head {
+        background-color: #50597b;
+    }
+
 .container-footer {
     height: 75px;
     width: 100%;

@@ -2,7 +2,6 @@
     /*
         TO DO:
 
-        -MAKE <a> TAGS PART OF <ul> - inline...
         -FIX INSTRUMENTS IN DATABASE
             - LINE 33 & 88
     
@@ -68,8 +67,9 @@
 
         <!--NAVIGATION-->
         <ul>   
-            <li><a href="logout.php">Logout</a></li>
-            <li><a href="addStudent.php">Add Student</a></li> 
+            <li><a href="logout.php">LOGOUT</a></li>
+            <li><a href="addStudent.php">ADD STUDENT</a></li> 
+            <li><a href="addStudent.php">EDIT MY PROFILE</a></li> 
             
             <!--
                 FOR WHEN editProfile.php IS WRITTEN

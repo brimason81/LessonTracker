@@ -107,8 +107,8 @@
 		
 		<!--NAVIGATION-->
 		<ul>
-			<li><a href="teacherProfile.php">My Profile</a></li>
-			<li><a href="logout.php">Logout</a></li>
+			<li><a href="teacherProfile.php">MY PROFILE</a></li>
+			<li><a href="logout.php">LOGOUT</a></li>
 		</ul>
 
 		<!--ADD STUDENT FORM-->

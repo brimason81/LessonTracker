@@ -6,7 +6,8 @@
     - Create video table
     - Accept multiple extensions for lesson_image table
     
-    -CHANGE ALL $ass VARIABLES
+    3/7/2021
+    - WORK ON PDF DISPLAY
 
 -->
 <?php
@@ -123,7 +124,7 @@ if (isset($_POST['uploadImg'])) {
         
         move_uploaded_file($_FILES['img']['tmp_name'], $img);
     }
-}
+} 
 
 // CODE TO RETRIEVE IMAGE FROM lesson_Images TABLE
 
@@ -146,23 +147,25 @@ if (isset($_POST['getImages']) && isset($_POST['date'])) {
                                 
             $file = $row['Image'];
             
-            /**/
-             //IMAGES - SET TO VARS
+            /*
+            IMAGES - SET TO VARS
             echo "<img src=$file width=\"100px\" height=\"100px\">"; 
-             //ADDED 2/28/2021
-            echo "<embed src=$file width=\"100px\" height=\"100px\" type=\"application/pdf\">";
+            */
+
+            // ADDED 2/28/2021 - THIS WORKS
+            echo "<embed src=$file width=\"200px\" height=\"200px\" type=\"application/pdf\">";
             
 
-            /*
+            // 3/7/2021 - NOW THIS WORKS FOR SOME REASON
             $filename = $row['Image']; 
 
             header('Content-type: application/pdf');
-            header('Content-Disposition: inline; filename = $filename');
+            header('Content-Disposition: inline; filename = $filename'); // BLOCK Disposition MADE THIS A DOWNLOAD
             header('Content-Transfer-Encoding: binary');
-            //header('Content-Length ' . filesize($file));
+            header('Content-Length ' . filesize($file));
             header('Accept-Ranges: bytes');
-            @readfile("data:application/pdf;base64, $filename");
-            */
+            readfile($filename);
+            
         }
     }
 }
