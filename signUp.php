@@ -34,7 +34,7 @@
     if (isset($_POST['passMatch'])) $passMatch = mysqli_real_escape_string(dbLogin(), $_POST['passMatch']); 
 
     if (!empty($_POST)) {
-        
+       /** */ 
         // VALIDATE UNIQUE USERNAME 
         if (!uniqueUser($userName)) {
             echo 'That User Name Already exists in the Database';
@@ -43,7 +43,7 @@
             $hashPass = passwordHash($pass);
             $salt = passwordSalt();
 
-            $query = "INSERT INTO Teachers (FirstName, LastName, UserName, Phone, Email, Password, Salt) 
+            $query = "INSERT INTO teachers (FirstName, LastName, UserName, Phone, Email, Password, Salt) 
                 VALUES ('$fName', '$lName', '$userName', '$phone', '$email', '$hashPass', '$salt')";
 
             $result = mysqli_query(dbLogin(), $query);
@@ -52,7 +52,7 @@
                 die("Query Failed.");
             } else {
                 
-                $newQuery = "SELECT * FROM Teachers WHERE Password = '$hashPass'";
+                $newQuery = "SELECT * FROM teachers WHERE Password = '$hashPass'";
                 $newResult = mysqli_query(dbLogin(), $newQuery);
 
                 session_start();
@@ -75,7 +75,7 @@
                 for ($x = 0; $x < sizeof($instruments); $x++) {
                     $inst = $instruments[$x];
                     
-                    $instQuery = "INSERT INTO Instruments (InstrumentName, Teacher_ID)
+                    $instQuery = "INSERT INTO instruments (InstrumentName, Teacher_ID)
                         VALUES ('$inst', '$teachId')";
 
                     $instResult = mysqli_query(dbLogin(), $instQuery);
@@ -101,7 +101,7 @@
     <style>
         @import url('https://googleapis.com/css?family=Ubuntu:wght@300&display=swap');
     </style>
-    <title>Teacher Registration/Login</title>
+    <title>Teacher Registration</title>
 </head>
 <body>
     <div class="main-container">

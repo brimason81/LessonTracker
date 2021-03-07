@@ -77,7 +77,7 @@ if (isset($_POST['assignment'])) {
     $assignDate = mysqli_real_escape_string(dbLogin(), $_POST['assignDate']);
 
     if (valiDate($assignDate)) {
-        $assignQuery = "INSERT INTO Assignments (Student_ID, Teacher_ID, Date, Assignment) VALUES
+        $assignQuery = "INSERT INTO assignments (Student_ID, Teacher_ID, Date, Assignment) VALUES
             ('$studentId', '$teachId', '$assignDate', '$assignment')";
 
         $assignResult = mysqli_query(dbLogin(), $assignQuery);
@@ -93,7 +93,7 @@ if (isset($_POST['assignment'])) {
 }
 
 // QUERY ASSIGNMENT FROM DATABASE
-$assViewQuery = "SELECT * FROM Assignments WHERE Student_ID = '$studentId' AND Date >= '$dateWeek'";
+$assViewQuery = "SELECT * FROM assignments WHERE Student_ID = '$studentId' AND Date >= '$dateWeek'";
 
 $assViewResult = mysqli_query(dbLogin(), $assViewQuery);
 

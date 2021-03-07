@@ -6,15 +6,23 @@
  * - instruments():  Array not working - does not contain all columns 
  * 
  */
-        
+    //AWS Credentials:
+    
+    /*
+    $username = "root";
+	    $password = "";
+	    $db = "Students";
+	    $server = "localhost";
+     */
+
     // FUNCTION TO LOGIN TO DB
     function dbLogin() {
         
         // DB VARIABLES - THIS FUNCTION DID NOT WORK WHEN VARIABLES WERE OUTSIDE OF THE FUNCTION
-        $username = "root";
-	    $password = "";
-	    $db = "Students";
-	    $server = "localhost";
+        $username = "brimasonAdmin";
+        $password = "lesson_tracker2021";
+        $db = "students";
+        $server = "lesson-tracker.c94o0cssdqsy.us-east-2.rds.amazonaws.com";
         
         $db_server = mysqli_connect($server, $username, $password);
         mysqli_select_db($db_server, $db);
@@ -74,7 +82,7 @@
     function uniqueUser($userName) {
         
         // query database for username
-        $query = "SELECT * FROM Teachers WHERE UserName = '$userName'";
+        $query = "SELECT * FROM teachers WHERE UserName = '$userName'";
         $result = mysqli_query(dbLogin(), $query);
         
         if (mysqli_num_rows($result) > 0) {
@@ -87,7 +95,7 @@
     // RETURNS A GIVEN TEACHER'S INSTRUMENTS TAUGHT FOR A DROP DOWN MENU
     function instruments($teachId) {
         
-        $query = "SELECT InstrumentName FROM Instruments WHERE Teacher_ID = '$teachId'";
+        $query = "SELECT InstrumentName FROM instruments WHERE Teacher_ID = '$teachId'";
 		$result = mysqli_query(dbLogin(), $query);
 
         $instArray;

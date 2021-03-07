@@ -63,7 +63,7 @@
 		} else if (!validateTime($startTime) || !validateTime($endTime)) {
 			echo "Please Use The Correct Format For Time (HH:MM)";
 		} else {
-			$query = "INSERT INTO StudentInfo (FirstName, LastName, Phone, Notes, DateStarted, LessonStartTime, LessonEndTime, LessonDay, Email, Teacher_ID) 
+			$query = "INSERT INTO studentinfo (FirstName, LastName, Phone, Notes, DateStarted, LessonStartTime, LessonEndTime, LessonDay, Email, Teacher_ID) 
 				VALUES ('$fName', '$lName', '$phone', '$notes', '$date', '$startTime', '$endTime', '$day', '$email', '$teachId')";
 			$result = mysqli_query(dbLogin(), $query);
 			
@@ -71,7 +71,7 @@
 				die("Didn't work");
 			} /**/else {
 				
-				$idQuery = "SELECT * FROM StudentInfo WHERE Email = '$email'";
+				$idQuery = "SELECT * FROM studentinfo WHERE Email = '$email'";
 
 				$idResult = mysqli_query(dbLogin(), $idQuery);
 
@@ -81,7 +81,7 @@
 
 			}
 
-			$instQuery = "INSERT INTO Instruments (InstrumentName, Teacher_ID, Student_ID)
+			$instQuery = "INSERT INTO instruments (InstrumentName, Teacher_ID, Student_ID)
 				VALUES ('$inst', '$teachId', '$studentId')";
 			
 			$instResult = mysqli_query(dbLogin(), $instQuery);
