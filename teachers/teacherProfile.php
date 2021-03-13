@@ -8,7 +8,7 @@
     */
 
     session_start();
-    include 'functions.php';
+    include '../functions/functions.php';
 ?>
 <?php
 
@@ -57,9 +57,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/profileStyle.css">
-    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:wght@300&display=swap">
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/table.css">
     <title>Teacher Profile</title>
 </head>
 <body>
@@ -67,9 +69,9 @@
 
         <!--NAVIGATION-->
         <ul>   
-            <li><a href="logout.php">LOGOUT</a></li>
-            <li><a href="addStudent.php">ADD STUDENT</a></li> 
-            <li><a href="addStudent.php">EDIT MY PROFILE</a></li> 
+            <li><a href="../logout.php">LOGOUT</a></li>
+            <li><a href="../students/addStudent.php">ADD STUDENT</a></li> 
+            <li><a href="editTeacher.php">EDIT MY PROFILE</a></li> 
             
             <!--
                 FOR WHEN editProfile.php IS WRITTEN
@@ -106,7 +108,7 @@
             </table>
 
             <!--FORM TO SELECT DAY OF WEEK-->
-            <form action="dayOfWeek.php">
+            <form action="../dayOfWeek.php">
                 <div class="container-studentInfo">
                     <div class="container-header"><h2>Select a Day for Day View</h2></div>
                     <!--DROP DOWN MENU FOR DAY OF WEEK VIEW-->

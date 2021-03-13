@@ -1,8 +1,11 @@
-@import url('https://googleapis.com/css?family=Ubuntu:wght@300&display=swap');
 
 body {
     font-family: 'Ubuntu', sans-serif;
     background: #3b4465;
+    
+    /*ADDED 3/12/2021*/
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .main-container {
@@ -21,6 +24,7 @@ body {
 
     #edit-head {
         background-color: #50597b;
+        
     }
 
 .container-footer {

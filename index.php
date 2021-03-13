@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:wght@300&display=swap">
     <link rel="stylesheet" href="css/index.css" type="text/css">
     <link rel="stylesheet" href="css/main.css" type="text/css">
-    <style>
-        @import url('https://googleapis.com/css?family=Ubuntu:wght@300&display=swap');
-    </style>
     <title>Sign Up/Login</title>
 </head>
 <body>

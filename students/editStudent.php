@@ -7,7 +7,7 @@
 	
 	*/
 
-	include 'functions.php';
+	include '../functions/functions.php';
 	session_start();
 
 	$id = $_SESSION['studentId'];
@@ -99,9 +99,9 @@
 <html>
 <head>
 	<title>Student Edit</title>
-	<link rel="stylesheet" href="css/main.css">
-	
-	<link rel="stylesheet" href="css/formStyle.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:wght@300&display=swap">
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/formStyle.css">
 </head>
 	<body>
 
@@ -111,7 +111,7 @@
 		<!--NAVIGATION-->
 		<ul>
 			<li><a href="studentProfile.php">STUDENT PROFILE</a></li>
-			<li><a href="teacherProfile.php">MY PROFILE PAGE</a></li>
+			<li><a href="../teachers/teacherProfile.php">MY PROFILE PAGE</a></li>
 		</ul>
 		
 		<form method="post" action="editStudent.php">

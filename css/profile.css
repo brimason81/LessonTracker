@@ -1,0 +1,185 @@
+/*
+    @media ?
+    1fr ?
+    responsive web pages - changes style for mobile size?
+*/
+
+:root {
+    --main-radius: 10px;
+}
+
+/* ADDED 3/2/2021*/
+h1, h2, h3 {
+    color: white;
+    text-align: center;
+    padding-top: none;
+}
+h1 {
+   font-size: 23px;
+}
+
+h2 {
+   font-size: 17px;
+
+   padding-top: 30px;
+}
+
+p {
+   padding-top: 10px;
+   color: white;
+
+   text-align: center;
+
+}
+
+form [type='text'] {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: block;
+    
+    background: #eef9fe;
+
+    height: 40px;
+    width: 200px;
+
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    
+}
+
+form [type="submit"] {
+    display: block;
+
+    margin: 0 auto;
+
+    height: 40px;
+    width: 150px;
+
+    border-radius: 25px;
+    border: none;
+    outline: none;
+
+    font-size: 14px;
+    font-weight: bold;
+    background: lawngreen;
+    color: white;
+    
+}
+
+form [type="file"] {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: block;
+    
+    background: #eef9fe;
+
+    color: dimgray;
+
+    height: 40px;
+    width: 200px;
+
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+}
+
+.assignments {
+    width: auto;
+    height: 45px;
+
+    padding-top: 25px;
+    
+    border-bottom: 2px solid royalblue;
+
+    text-align: center;
+    color: white;
+}
+
+.assignments a {
+    color: white;
+}
+
+.grid-container {
+    display: grid;
+    height: 100vh;
+
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: 
+        "profileNav profileNav profileNav profileNav"
+        "container-assignments container-studentInfo container-studentInfo container-studentInfo"
+        "container-assignments container-add container-image-add container-image-view"
+        "container-assignments container-placeholder container-placeholder container-placeholder";
+    grid-gap: 10px;
+}
+
+#profileNav {
+    grid-area: profileNav;
+}
+
+.container-assignments {
+    background: #50597b;
+    grid-area: container-assignments;
+
+    border-radius: var(--main-radius);
+}
+
+    #new-header-color {
+        padding-top: 10px;
+                
+        background: lightblue;
+        
+        text-align: center;
+        color: white;
+
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bolder;
+        font-size: 17px;
+    }
+
+.container-studentInfo {
+    background: #50597b;
+    grid-area: container-studentInfo;
+
+    border-radius: var(--main-radius);
+}
+
+.container-add {
+    background: #50597b;
+    grid-area: container-add;
+
+    border-radius: var(--main-radius);
+}
+.container-image-add {
+    background: #50597b;
+    grid-area: container-image-add;
+
+    border-radius: var(--main-radius);
+}
+.container-image-view {
+    background: #50597b;
+    grid-area: container-image-view;
+
+    border-radius: var(--main-radius);
+}
+.container-placeholder {
+    background: #50597b;
+    grid-area: container-placeholder;
+
+    border-radius: var(--main-radius);
+}
+
+@media only screen and (max-width:  500px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1.2fr 2.2fr 2.2fr 1.2fr 1.2fr 1.2fr;
+        grid-template-areas:
+        "profileNav" 
+        "container-studentInfo"
+        "container-assignments"
+        "container-add"
+        "container-image-add"
+        "container-image-view";
+    }
+}

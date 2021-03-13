@@ -1,5 +1,5 @@
 <?php
-    include 'functions.php';
+    include 'functions/functions.php';
 ?>
 <?php
     
@@ -29,7 +29,7 @@
                 $_SESSION['firstName'] = $row['FirstName'];
                 $_SESSION['pass'] = $row['Password'];
 
-                header('location:  teacherProfile.php');
+                header('location:  teachers/teacherProfile.php');
             } else {
                 echo 'Your User Name and/or Password is incorrect' . "<br>";
                 echo 'Please Enter Valid Login Credentials' . "<br>";
@@ -44,6 +44,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="functions.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:wght@300&display=swap">
+
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/formStyle.css">
     <title>Teacher Login</title>

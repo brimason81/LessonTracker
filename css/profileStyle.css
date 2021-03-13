@@ -40,7 +40,7 @@ p {
 
 .grid-container, .container-image-grid {
     display: grid;
-    grid-template-columns: auto auto auto; /* - TOO SPREAD APART?*/
+    grid-template-columns: 1fr 1fr 1fr; /* - TOO SPREAD APART?*/
     grid-gap: 10px;
 }
 

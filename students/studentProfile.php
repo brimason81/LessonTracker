@@ -11,7 +11,7 @@
 
 -->
 <?php
-        include 'functions.php';
+        include '../functions/functions.php';
         
         session_start();
         if (!empty($_GET)) {
@@ -39,6 +39,7 @@ $notes;
 $imgSuccess;
 
 $assignments = array();
+$images = array();
 
 $teachId;
 
@@ -142,30 +143,7 @@ if (isset($_POST['getImages']) && isset($_POST['date'])) {
         echo $output .= "There are no records for this query";
     } else {
         while ($row = mysqli_fetch_assoc($imgResult)) {
-        
-            $output .= "<object data:application/pdf;base64".$row['Image']."' style='width:200px;height:200px;'>";
-                                
-            $file = $row['Image'];
-            
-            /*
-            IMAGES - SET TO VARS
-            echo "<img src=$file width=\"100px\" height=\"100px\">"; 
-            */
-
-            // ADDED 2/28/2021 - THIS WORKS
-            echo "<embed src=$file width=\"200px\" height=\"200px\" type=\"application/pdf\">";
-            
-
-            // 3/7/2021 - NOW THIS WORKS FOR SOME REASON
-            $filename = $row['Image']; 
-
-            header('Content-type: application/pdf');
-            header('Content-Disposition: inline; filename = $filename'); // BLOCK Disposition MADE THIS A DOWNLOAD
-            header('Content-Transfer-Encoding: binary');
-            header('Content-Length ' . filesize($file));
-            header('Accept-Ranges: bytes');
-            readfile($filename);
-            
+            $file = $row['Image'];        
         }
     }
 }
@@ -174,33 +152,41 @@ if (isset($_POST['getImages']) && isset($_POST['date'])) {
 <html>
 <head>
     <title>Student Profile</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/profileStyle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:wght@300&display=swap">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/profile.css">
 </head>
 
 <body>
     <div class="main-container">
-            <!--NAVIGATION-->
-            <ul>
-                <li><a href="editStudent.php">EDIT INFO</a></li>    
-                <li><a href="logout.php">LOGOUT</a></li> 
-                <li><a href="addStudent.php">ADD STUDENT</a></li> 
-                <li><a href="teacherProfile.php">MY PROFILE</a></li>
-            </ul>
- 
-        <!--OPEN GRID CONTAINER FOR STUDENT INFO, ASIGNMENTS, AND ADD ASIGNMENTS-->
+
+        <!--OPEN GRID CONTAINER-->
         <div class="grid-container"> <!--THIS CAUSES UNIFORMITY IN HEIGTH AND WIDTH, AND ADDS TAB ON TOP OF .container-header-->
             
+            <!--NAVIGATION - MAYBE PUT THIS IN GRID?-->
+            <ul id="profileNav">
+                <li><a href="editStudent.php">EDIT INFO</a></li>    
+                <li><a href="../logout.php">LOGOUT</a></li> 
+                <li><a href="addStudent.php">ADD STUDENT</a></li> 
+                <li><a href="../teachers/teacherProfile.php">MY PROFILE</a></li>
+            </ul>
+ 
+        
             <!--ASSIGNMENTS CONTAINER-->
             <div class=container-assignments>
-                <div class=container-header id="new-header-color"><h2>STUDENT ASSIGNMENTS</h2></div>
+                <div class=container-header id="new-header-color">STUDENT ASSIGNMENTS</div>
                     
                     <?php 
                         foreach($assignments as $assignment) {
                             echo "<div class=\"assignments\">" . $assignment . "</div>";
                         }
                     ?>
-                    
+                    <?php
+                        foreach($images as $image) {
+                            echo "<div class=\"assignments\"><a href=\"$image\">.$image.</a></div>";
+                            //echo "<div class=\"assignments\"><embed src=$image width=\"auto\" height=\"auto\" type=\"application/pdf\"></div>";
+                        }
+                    ?>
                 <div class="container-footer"></div>
             </div>
 
@@ -230,11 +216,8 @@ if (isset($_POST['getImages']) && isset($_POST['date'])) {
                 <div class="container-footer"></div>
             </div>
 
-        <!--CLOSE GRID FOR ASSIGNMENTS, INFO, AND ADD ASSIGNMENTS-->
-        </div>
         
-        <!--IMAGE GRID-->
-        <div class="container-image-grid">
+       
             <!--FORM TO ADD LESSON IMAGES TO DB -->
             <div class="container-image-add">
                 <div class="container-header"><h2>UPLOAD LESSON IMAGE:</h2></div>
@@ -245,13 +228,7 @@ if (isset($_POST['getImages']) && isset($_POST['date'])) {
                 <div class="container-footer"><?php //echo $imgSuccess; ?></div>
             </div>
             
-            <!--PLACEHOLDER CONTAINER-->
-            <div class="container-placeholder">
-                <div class="container-header"></div>
-                <div class="container-footer"></div>
-            </div>
-
-            <!-- FORM TO VIEW STUDENT LESSONS FROM Lesson_Images-->
+            <!-- FORM TO VIEW STUDENT LESSONS FROM lesson_images-->
             <div class="container-image-view">
                 <div class="container-header"><H2>SELECT A DATE RANGE <br> FOR IMAGE:</H2></div>
                     <form action="studentProfile.php" method="post">
@@ -267,7 +244,13 @@ if (isset($_POST['getImages']) && isset($_POST['date'])) {
                 <div class="container-footer"></div>
             </div>
 
-        <!--CLOSE container-image-grid-->
+            <!--PLACEHOLDER CONTAINER-->
+            <div class="container-placeholder">
+                <div class="container-header"></div>
+                <div class="container-footer"></div>
+            </div>
+
+        <!--CLOSE GRID FOR ASSIGNMENTS, INFO, AND ADD ASSIGNMENTS-->
         </div>
 
     <!--CLOSE MAIN CONTAINER-->

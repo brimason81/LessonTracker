@@ -1,5 +1,5 @@
 <?php
-    include 'functions.php';
+    include 'functions/functions.php';
 ?>
 <?php
 
@@ -93,14 +93,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="functions.js"></script>
+    <script src="functions/functions.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=., initial-scale=1.0">
     <link rel="stylesheet" href="css/formStyle.css">
     <link rel="stylesheet" href="css/main.css">
-    <style>
-        @import url('https://googleapis.com/css?family=Ubuntu:wght@300&display=swap');
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:wght@300&display=swap">
     <title>Teacher Registration</title>
 </head>
 <body>

@@ -7,7 +7,7 @@
 	
 -->
 <?php
-	include 'functions.php';
+	include '../functions/functions.php';
 
 	session_start();
 	$teachId = $_SESSION['id'];
@@ -96,19 +96,17 @@
 <html>
 <head>
 	<title>Add Student Page</title>
-	<link rel="stylesheet" type="text/css" href="css/formStyle.css">
-	<link rel="stylesheet" href="css/main.css">
-	<style>
-        @import url('https://googleapis.com/css?family=Ubuntu:wght@300&display=swap');
-    </style>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:wght@300&display=swap">
+	<link rel="stylesheet" type="text/css" href="../css/formStyle.css">
+	<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 	<div class="main-container">	
 		
 		<!--NAVIGATION-->
 		<ul>
-			<li><a href="teacherProfile.php">MY PROFILE</a></li>
-			<li><a href="logout.php">LOGOUT</a></li>
+			<li><a href="../teachers/teacherProfile.php">MY PROFILE</a></li>
+			<li><a href="../logout.php">LOGOUT</a></li>
 		</ul>
 
 		<!--ADD STUDENT FORM-->
