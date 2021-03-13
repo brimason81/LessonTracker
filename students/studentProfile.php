@@ -95,14 +95,14 @@ if (isset($_POST['assignment'])) {
 }
 
 // QUERY ASSIGNMENT FROM DATABASE
-$assViewQuery = "SELECT * FROM assignments WHERE Student_ID = '$studentId' AND Date >= '$dateWeek'";
+$assignViewQuery = "SELECT * FROM assignments WHERE Student_ID = '$studentId' AND Date >= '$dateWeek'";
 
-$assViewResult = mysqli_query(dbLogin(), $assViewQuery);
+$assignViewResult = mysqli_query(dbLogin(), $assignViewQuery);
 
-if (!$assViewResult) {
+if (!$assignViewResult) {
     die('Assignment Query Failed');
 } else {
-    while($row = mysqli_fetch_assoc($assViewResult)) {
+    while($row = mysqli_fetch_assoc($assignViewResult)) {
         $assignments[] = $row['Assignment'];
     }
 }
@@ -143,7 +143,7 @@ if (isset($_POST['getImages']) && isset($_POST['date'])) {
         echo $output .= "There are no records for this query";
     } else {
         while ($row = mysqli_fetch_assoc($imgResult)) {
-            $file = $row['Image'];        
+            $images[] = $row['Image'];        
         }
     }
 }
