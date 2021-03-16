@@ -36,12 +36,17 @@ $phone;
 $email;
 $notes;
 
-$imgSuccess;
-
 $assignments = array();
 $images = array();
 
 $teachId;
+
+// PROMPTS
+$imgSuccess = '';
+$assignSuccess = '';
+$dateFormat = '';
+
+
 
 $dateNow = date('Y-m-d', strtotime('-5 hours'));
 $dateWeek = date('Y-m-d', strtotime('-1 week'));
@@ -87,10 +92,10 @@ if (isset($_POST['assignment'])) {
         if (!$assignResult) {
             die('assignment table fail');
         } else {
-            echo "Assignment Added!" . "<br>"; // NEED TO OUPUT ELSEWHERE
+            $assignSuccess = "Assignment Added!";
         }
     } else {
-        echo "Please Use Correct Format For Date (YYYY-MM-DD)";
+        $dateFormat = "Please Use Correct Format For Date (YYYY-MM-DD)";
     }
 }
 
@@ -108,7 +113,7 @@ if (!$assignViewResult) {
 }
 
 // UPLOAD ITEMS TO lesson_images TABLE 
-if (isset($_POST['uploadImg'])) {
+if (isset($_POST['uploadImg']) && ($_FILES['img']['name'] != '')) {
     
     $img = $_FILES['img']['name'];
     $studentId = $_SESSION['studentId'];
@@ -183,7 +188,7 @@ if (isset($_POST['getImages']) && isset($_POST['date'])) {
                     ?>
                     <?php
                         foreach($images as $image) {
-                            echo "<div class=\"assignments\"><a href=\"$image\">.$image.</a></div>";
+                            echo "<div class=\"assignments\"><a href=\"$image\">$image</a></div>";
                             //echo "<div class=\"assignments\"><embed src=$image width=\"auto\" height=\"auto\" type=\"application/pdf\"></div>";
                         }
                     ?>
@@ -213,24 +218,39 @@ if (isset($_POST['getImages']) && isset($_POST['date'])) {
                         <input type="text" name="assignment" placeholder="Enter Assignment">
                         <input type="submit" value="ADD ASSIGNMENT">
                     </form> 
-                <div class="container-footer"></div>
+                <div class="container-footer">
+                    <?php
+                        if ($dateFormat != '') {
+                            echo $dateFormat;
+                        } 
+                        if ($assignSuccess != '') {
+                            echo $assignSuccess;
+                        }
+                    ?>
+                </div>
             </div>
 
         
        
             <!--FORM TO ADD LESSON IMAGES TO DB -->
             <div class="container-image-add">
-                <div class="container-header"><h2>UPLOAD LESSON IMAGE:</h2></div>
+                <div class="container-header"><h2>UPLOAD LESSON IMAGE</h2></div>
                     <form action="studentProfile.php" method="post" enctype="multipart/form-data">
                         <input type="file" name="img">
                         <input type="submit" name="uploadImg" value="UPLOAD IMAGE">
                     </form>
-                <div class="container-footer"><?php //echo $imgSuccess; ?></div>
+                <div class="container-footer">
+                    <?php 
+                        if ($imgSuccess != '') {
+                            echo $imgSuccess; 
+                        }   
+                    ?>
+                </div>
             </div>
             
             <!-- FORM TO VIEW STUDENT LESSONS FROM lesson_images-->
             <div class="container-image-view">
-                <div class="container-header"><H2>SELECT A DATE RANGE <br> FOR IMAGE:</H2></div>
+                <div class="container-header"><H2>SELECT A DATE RANGE <br> FOR IMAGE</H2></div>
                     <form action="studentProfile.php" method="post">
                         <div class="select">
                         <select name="date" id="">

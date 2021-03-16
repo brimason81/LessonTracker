@@ -14,10 +14,10 @@
         <div class="container-header"></div>
             <div class="container-main">
                 <div class="container-main-signUp">
-                    <a href="signUp.php">Sign Up</a><br>
+                    <a href="teachers/signUp.php">Sign Up</a><br>
                 </div>
                 <div class="container-main-login">
-                    <a href="teacherLogin.php">Login</a>
+                    <a href="teachers/teacherLogin.php">Login</a>
                 </div>
             </div>
         <div class="container-footer"></div>    
