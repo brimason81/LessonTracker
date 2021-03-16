@@ -6,23 +6,23 @@
  * - instruments():  Array not working - does not contain all columns 
  * 
  */
-    //AWS Credentials:
     
-    /*
-    $username = "root";
-	    $password = "";
-	    $db = "Students";
-	    $server = "localhost";
-     */
-
+    
+    // FUNCTION TO LOGOUT
+    function dbLogout() {
+        session_start();
+        session_destroy();
+        header("location:  ../index.php");
+    }
+    
     // FUNCTION TO LOGIN TO DB
     function dbLogin() {
         
         // DB VARIABLES - THIS FUNCTION DID NOT WORK WHEN VARIABLES WERE OUTSIDE OF THE FUNCTION
-        $username = "brimasonAdmin";
-        $password = "lesson_tracker2021";
-        $db = "students";
-        $server = "lesson-tracker.c94o0cssdqsy.us-east-2.rds.amazonaws.com";
+        $username = "root";
+	    $password = "";
+	    $db = "Students";
+	    $server = "localhost";
         
         $db_server = mysqli_connect($server, $username, $password);
         mysqli_select_db($db_server, $db);
