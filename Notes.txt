@@ -45,6 +45,4 @@ php function to validate form data?
         - Lesson_Tracker:  .sql file upload w/ triggers
         - students:  deleted AFTER DELETE Trigger on Teachers table and studentinfo table - now able to delete Teachers
 
-        Students DB:
-            Teachers Table:
-                - Brian Mason, PASSWORD:  23456
+        
