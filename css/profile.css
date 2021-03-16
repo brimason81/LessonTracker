@@ -183,3 +183,32 @@ form [type="file"] {
         "container-image-view";
     }
 }
+
+.grid-container-teach {
+    display: grid;
+    height: auto;
+
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+        "ul ul ul"
+        "h1 h1 h1"
+        "table table form";
+    grid-gap: 10px;
+}
+
+ul {
+    grid-area: ul;
+}
+
+h1{
+    grid-area: h1;
+}
+
+table {
+    grid-area: table;
+}
+
+form {
+    grid-area: form;
+}

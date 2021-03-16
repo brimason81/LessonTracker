@@ -14,9 +14,11 @@
 
     // VARIABLES
     $result;
+    
+    $adminId = 74;
 
-    $noStudentsPrompt = 'You Do Not Have Any Students in the Database!' . '<br>' .  
-        'Please Click \'Add Student\' To Add Student';
+    // PROMPTS
+    $noStudentsPrompt = '';
     
     //  QUERY DB FOR ALL STUDENTS
     if (!empty($_SESSION)) {
@@ -47,7 +49,8 @@
                 echo date('g:i', strtotime($row['LessonStartTime'])) . " - " . date('g:i', strtotime($row['LessonEndTime'])) . "<br>";
             }
         } else {
-            echo "You Do Not Currently Have Any Lessons Scheduled for today" . "<br>";
+            $noStudentsPrompt = 'You Do Not Have Any Students in the Database!' . '<br>' .  
+                'Please Click \'Add Student\' To Add Student';
         }
     }
     
@@ -66,29 +69,30 @@
 </head>
 <body>
     <div class="main-container">
-
-        <!--NAVIGATION-->
-        <ul>   
-            <li><a href="../logout.php">LOGOUT</a></li>
-            <li><a href="../students/addStudent.php">ADD STUDENT</a></li> 
-            <li><a href="editTeacher.php">EDIT MY PROFILE</a></li> 
-            
-            <!--
-                FOR WHEN editProfile.php IS WRITTEN
-
-                <li><a href="editProfile.php">Edit My Profile</a></li>
-            -->
-        </ul>     
+        <div class="grid-container-teach">
         
-        <h1>Welcome, <span><?php echo $_SESSION['user'] . '!'?></span></h1>
-        <div class="grid-container">
-
+            <!--NAVIGATION-->
+            <ul>    <!--onclick="dbLogout()" -- THIS DOESN'T WORK--->
+                <li><a href="../logout.php">LOGOUT</a></li>
+                <li><a href="../students/addStudent.php">ADD STUDENT</a></li> 
+                <li><a href="editTeacher.php">EDIT MY PROFILE</a></li> 
+                
+                <!--ONLY DISPLAY ON ADMIN LOGIN-->
+                <?php
+                    if ($id == $adminId) {
+                        echo "<li><a href=\"../admin/admin.php\">view database info</a></li>";
+                    }
+                ?>
+            </ul>     
+        
+            <h1>Welcome, <span><?php echo $_SESSION['user'] . '!'?></span></h1>
+                    
             <table class="students"><!-- ALL LESSONS-->
-               <!--
-                <div class="container-header"> 
-                    <h2>ALL STUDENTS</h2>
-                </div>
-                -->
+               <tr id="top-row">
+                   <td>STUDENT NAME</td>
+                   <td>LESSON TIME</td>
+                   <td>LESSON DAY</td>
+               </tr>
                 <?php
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -108,7 +112,7 @@
             </table>
 
             <!--FORM TO SELECT DAY OF WEEK-->
-            <form action="../dayOfWeek.php">
+            <form action="../students/dayOfWeek.php">
                 <div class="container-studentInfo">
                     <div class="container-header"><h2>Select a Day for Day View</h2></div>
                     <!--DROP DOWN MENU FOR DAY OF WEEK VIEW-->

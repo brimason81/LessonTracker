@@ -1,5 +1,6 @@
 <?php
-    include 'functions/functions.php';
+    include '../functions/functions.php';
+
 ?>
 <?php
 
@@ -93,11 +94,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="functions/functions.js"></script>
+    <script src="../functions/functions.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=., initial-scale=1.0">
-    <link rel="stylesheet" href="css/formStyle.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/formStyle.css">
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:wght@300&display=swap">
     <title>Teacher Registration</title>
 </head>
@@ -105,10 +106,8 @@
     <div class="main-container">
         <!--NAVIGATION-->
         <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="teacherLogin.php">Login</a></li>
-            <!--ONLY DISPLAY ON ADMIN LOGIN-->
-            <li><a href="">view database link on Admin login</a></li>
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="teacherLogin.php">Login</a></li>        
         </ul>
         
         <h3>Sign Up For Lesson Tracker</h3>
@@ -130,7 +129,7 @@
                 <div class="container">
                     <div class="container-header"><p>Select Instruments To Teach</p></div>
                         <!--Instrument Select-->
-                        <!--<label>Please Select the Instruments That You Teach</label><br>-->
+                        
                         <input type="checkbox" name="instruments[]" value="Drum Set" ><span> Drum Set</span><br>
                         <input type="checkbox" name="instruments[]" value="Electric Bass" ><span> Electric Bass</span><br>
                         <input type="checkbox" name="instruments[]" value="Guitar" ><span> Guitar</span><br>

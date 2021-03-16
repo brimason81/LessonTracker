@@ -4,9 +4,12 @@ table {
     width: 100%;
     height: auto;
 
+    margin-top: 10px;
+
     border-collapse: collapse; /* tr BORDER DOESN'T WORK WITHOUT THIS*/
 
 }
+
 h1 {
     margin: 0 auto;
 
@@ -32,6 +35,9 @@ td {
     font-size: 17px;
     font-weight: bold;
 }
+    #top-row {
+        text-decoration: underline;
+    }
 
 .table-header {
     width: 100%;

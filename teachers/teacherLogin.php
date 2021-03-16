@@ -1,8 +1,10 @@
 <?php
-    include 'functions/functions.php';
+    include '../functions/functions.php';
 ?>
 <?php
-    
+    //PROMPTS
+    $loginError = '';
+
     // LOGIN CREDENTIALS
     if (isset($_POST['userName'])) $userName = mysqli_real_escape_string(dbLogin(), $_POST['userName']);
     if (isset($_POST['pass'])) $pass = mysqli_real_escape_string(dbLogin(), $_POST['pass']);
@@ -29,10 +31,10 @@
                 $_SESSION['firstName'] = $row['FirstName'];
                 $_SESSION['pass'] = $row['Password'];
 
-                header('location:  teachers/teacherProfile.php');
+                header('location:  teacherProfile.php');
             } else {
-                echo 'Your User Name and/or Password is incorrect' . "<br>";
-                echo 'Please Enter Valid Login Credentials' . "<br>";
+                $loginError = 'Your User Name and/or Password is incorrect' . "<br>" .
+                'Please Enter Valid Login Credentials';
             }
         }
     }
@@ -46,15 +48,15 @@
     <script src="functions.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:wght@300&display=swap">
 
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/formStyle.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/formStyle.css">
     <title>Teacher Login</title>
 </head>
 <body>
     <div class="main-container">
         <!--NAVIGATION--> 
         <ul>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="../index.php">Home</a></li>
             <li><a href="signUp.php">Sign Up</a></li>
         </ul> 
 
@@ -72,7 +74,9 @@
                 <input type="checkbox" onclick="showPass();"> <span>Show Password</span> 
             </form> 
 
-            <div class="container-footer"></div> 
+            <div class="container-footer">
+                <?php if ($loginError != '') echo $loginError?>
+            </div> 
         </div>
     </div>
 </body>

@@ -112,35 +112,35 @@ form [type="submit"] {
     
 }
 
-span, label {
+label, span {
     color: gray;
 }
 
-label {
-    padding-left: 400px;
-}
-
 form [type='checkbox'] {
-    margin: 0 auto;
+    
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 80px;
+    margin-left: none;
+    
     border: 2px solid gray;
+}
+    
+form [type='radio'] {
+    margin: auto;
 }
 
 textarea {
+    
     margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 80px;
+    
     border: 2px solid gray;
 }
 
 /*MODIFIED 2/27/2021 - DOESN'T WORK WITHOUT .container width SET TO auto*/
 form #info {
     
-    margin-left: 50px;
-
     display: inline-block;
 
 };

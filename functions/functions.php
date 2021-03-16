@@ -14,13 +14,20 @@
 	    $db = "Students";
 	    $server = "localhost";
      */
-
+    
+    // FUNCTION TO LOGOUT
+    function dbLogout() {
+        session_start();
+        session_destroy();
+        header("location:  ../index.php");
+    }
+    
     // FUNCTION TO LOGIN TO DB
     function dbLogin() {
         
         // DB VARIABLES - THIS FUNCTION DID NOT WORK WHEN VARIABLES WERE OUTSIDE OF THE FUNCTION
         $username = "brimasonAdmin";
-        $password = "lesson_tracker2021";
+        $password = "student_database-two.thousand.XXi";
         $db = "students";
         $server = "lesson-tracker.c94o0cssdqsy.us-east-2.rds.amazonaws.com";
         

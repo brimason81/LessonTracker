@@ -22,6 +22,12 @@
 	// VARIABLE DECLARATION
 	$twelveHourAdjust = 43200;
 	$placeholderDate = date('Y-m-d', strtotime('-5 hours'));
+
+	// PROMPTS
+	$emailFormat = '';
+	$dateFormat = '';
+	$timeFormat = '';
+	$phoneFormat = '';
 	
 	// $_POST VARIABLE ASSIGNMENT
 	if (isset($_POST['fName']))  $fName = mysqli_real_escape_string(dbLogin(), $_POST['fName']);
@@ -55,13 +61,13 @@
 	// VALIDATE USER INPUT
 	if (!empty($_POST)) {
 		if (!validateEmail($email)) {
-			echo 'Please Enter A Valid Email Address';
+			$emailFormat = 'Please Enter A Valid Email Address';
 		} else if (!validatePhone($phone)) {
-			echo 'Please Enter A Valid Phone Number (555-555-5555)';
+			$phoneFormat = 'Please Enter A Valid Phone Number (555-555-5555)';
 		} else if (!valiDate($date)) {
-			echo "Please Use The Correct Format For Date (YYYY-MM-DD)";
+			$dateFormat = "Please Use The Correct Format For Date (YYYY-MM-DD)";
 		} else if (!validateTime($startTime) || !validateTime($endTime)) {
-			echo "Please Use The Correct Format For Time (HH:MM)";
+			$timeFormat = "Please Use The Correct Format For Time (HH:MM)";
 		} else {
 			$query = "INSERT INTO studentinfo (FirstName, LastName, Phone, Notes, DateStarted, LessonStartTime, LessonEndTime, LessonDay, Email, Teacher_ID) 
 				VALUES ('$fName', '$lName', '$phone', '$notes', '$date', '$startTime', '$endTime', '$day', '$email', '$teachId')";
@@ -97,7 +103,7 @@
 <head>
 	<title>Add Student Page</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:wght@300&display=swap">
-	<link rel="stylesheet" type="text/css" href="../css/formStyle.css">
+	<link rel="stylesheet" href="../css/formStyle.css">
 	<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
@@ -120,19 +126,27 @@
 						<input id="info" type="text" name="lName" placeholder="Last Name" required="required">
 						
 						<input id="info" type="text" name="date" placeholder="<?php echo $placeholderDate; ?>" required="required">
-
+							
+							<?php if ($dateFormat != '') echo $dateFormat?>
+							
 						<input id="info" type="text" name="phone" placeholder="555-555-5555" required="required">
+
+							<?php if ($phoneFormat != '') echo $phoneFormat?>
+
 						<input id="info" type="text" name="email" placeholder="email@domain.com" required="required">
+
+							<?php if ($emailFormat != '') echo $emailFormat?>
+
 					<div class="container-footer"></div>
 				</div>
 
 				<div class="container">
 					<div class="container-header"></div>
-						<input id="info" type="text" name="startTime" placeholder="Enter Lesson Start Time" required="required"> 
+						<input id="info" type="text" name="startTime" placeholder="Enter Lesson Start Time" required="required"><br>
 						<input type="radio" name="mornNightStart" value="am" checked="checked"> <span> AM</span>
-						<input type="radio" name="mornNightStart" value="pm"> <span> PM</span>
+						<input type="radio" name="mornNightStart" value="pm"> <span> PM</span><br>
 						
-						<input id="info" type="text" name="endTime" placeholder="Enter Lesson End Time" required="required">
+						<input id="info" type="text" name="endTime" placeholder="Enter Lesson End Time" required="required"><br>
 						<input type="radio" name="mornNightEnd" value="am" checked="checked"> <span> AM</span>
 						<input type="radio" name="mornNightEnd" value="pm"> <span> PM</span>
 					<div class="container-footer"></div>
