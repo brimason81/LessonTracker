@@ -138,6 +138,7 @@ textarea {
     border: 2px solid gray;
 }
 
+
 /*MODIFIED 2/27/2021 - DOESN'T WORK WITHOUT .container width SET TO auto*/
 form #info {
     

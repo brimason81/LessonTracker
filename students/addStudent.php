@@ -128,14 +128,17 @@
 						
 						<input id="info" type="text" name="date" placeholder="<?php echo $placeholderDate; ?>" required="required">
 							
+							<!--FEEDBACK-->
 							<?php if ($dateFormat != '') echo $dateFormat?>
 							
 						<input id="info" type="text" name="phone" placeholder="555-555-5555" required="required">
 
+							<!--FEEDBACK-->
 							<?php if ($phoneFormat != '') echo $phoneFormat?>
 
 						<input id="info" type="text" name="email" placeholder="email@domain.com" required="required">
 
+							<!--FEEDBACK-->
 							<?php if ($emailFormat != '') echo $emailFormat?>
 
 					<div class="container-footer"></div>
@@ -144,10 +147,18 @@
 				<div class="container">
 					<div class="container-header"></div>
 						<input id="info" type="text" name="startTime" placeholder="Enter Lesson Start Time" required="required"><br>
+						
+						<!--FEEDBACK-->
+						<?php if ($timeFormat != "") echo $timeFormat ?>
+						
 						<input type="radio" name="mornNightStart" value="am" checked="checked"> <span> AM</span>
 						<input type="radio" name="mornNightStart" value="pm"> <span> PM</span><br>
 						
 						<input id="info" type="text" name="endTime" placeholder="Enter Lesson End Time" required="required"><br>
+						
+						<!--FEEDBACK-->
+						<?php if ($timeFormat != "") echo $timeFormat ?>
+
 						<input type="radio" name="mornNightEnd" value="am" checked="checked"> <span> AM</span>
 						<input type="radio" name="mornNightEnd" value="pm"> <span> PM</span>
 					<div class="container-footer"></div>

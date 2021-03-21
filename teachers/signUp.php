@@ -8,9 +8,11 @@
     $badUserName = $badPhone = $badEmail = '';
 
     // POST Variables
-    if (isset($_POST['userName'])) $userName = mysqli_real_escape_string(dbLogin(), $_POST['userName']);
     if (isset($_POST['fName'])) $fName = mysqli_real_escape_string(dbLogin(), $_POST['fName']); 
     if (isset($_POST['lName'])) $lName = mysqli_real_escape_string(dbLogin(), $_POST['lName']);
+    if (isset($_POST['userName'])) $userName = mysqli_real_escape_string(dbLogin(), $_POST['userName']);
+    if (isset($_POST['phone'])) $phone = mysqli_real_escape_string(dbLogin(), $_POST['phone']);
+    if (isset($_POST['email'])) $email = mysqli_real_escape_string(dbLogin(), $_POST['email']);
     
     // Array POST Variables
     if (isset($_POST['instruments'])) $instruments =  $_POST['instruments'];
@@ -20,30 +22,15 @@
     if (isset($_POST['passMatch'])) $passMatch = mysqli_real_escape_string(dbLogin(), $_POST['passMatch']); 
     
     if (!empty($_POST)) {
-            // VALIDATE PHONE NO.
-        if (isset($_POST['phone'])) {
-            if (validatePhone($_POST['phone'])) {
-                $phone = mysqli_real_escape_string(dbLogin(), $_POST['phone']); 
-            } else {
-                $badPhone = 'Please Enter A Valid Phone Number (555-555-5555)';
-            }
-        }    
-
-        // VALIDATE EMAIL
-        if (isset($_POST['email'])) {
-            if (validateEmail($_POST['email'])) {
-                $email = mysqli_real_escape_string(dbLogin(), $_POST['email']); 
-            } else {
-                $badEmail = 'Please Enter A Valid Email Address';
-            }    
-        } 
-
-        /** */ 
-        // VALIDATE UNIQUE USERNAME 
-        if (!uniqueUser($userName)) {
+        
+        // POST VARIABLES THAT NEED FORMAT VALIDATION 
+        if (!uniqueUser($userName)) { // VALIDATE USERNAME
             $badUserName = 'That User Name Already exists in the Database';
+        } else if (!validatePhone($phone)) { // VALIDATE PHONE NO.
+            $badPhone = 'Please Enter A Valid Phone Number (555-555-5555)';
+        } else if (!validateEmail($email)) { // VALIDATE EMAIL
+            $badEmail = 'Please Enter A Valid Email Address';
         } else {
-
             $hashPass = passwordHash($pass);
             $salt = passwordSalt();
 
@@ -93,6 +80,8 @@
             }
         }
     }
+        
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
