@@ -7,11 +7,12 @@
  * 
  */
    /* DB Credentials:
-    
-    
-        
-    
-    */
+    $username = "root";
+    $password = "";
+    $db = "Students";
+    $server = "localhost";
+      
+*/
     
     // FUNCTION TO LOGOUT
     function dbLogout() {
@@ -24,10 +25,10 @@
     function dbLogin() {
         
         // DB VARIABLES - THIS FUNCTION DID NOT WORK WHEN VARIABLES WERE OUTSIDE OF THE FUNCTION
-        $username = "root";
-        $password = "";
-        $db = "Students";
-        $server = "localhost";
+        $username = "brimasonAdmin";
+        $password = "student_database-two.thousand.XXi";
+        $db = "students";
+        $server = "lesson-tracker.c94o0cssdqsy.us-east-2.rds.amazonaws.com";
         
         $db_server = mysqli_connect($server, $username, $password);
         mysqli_select_db($db_server, $db);
