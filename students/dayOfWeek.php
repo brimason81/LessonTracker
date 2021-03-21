@@ -4,7 +4,11 @@
 	$teachId = $_SESSION['id'];
 ?>
 <?php
-        
+    
+	// PROMPT/FEEDBACK
+	$noLessons = '';
+
+	// DB QUERY
 	$day = $_GET['days'];
 	$query = "SELECT * FROM studentinfo WHERE LessonDay = '$day' AND Teacher_ID = '$teachId'"; 
     $result = mysqli_query(dbLogin(), $query); 
@@ -46,11 +50,18 @@
 						echo "</tr>";
 					}
 				} else {
-					echo "You do not have any students on this day.";
+					$noLessons = "You do not have any students on this day.";
 				}
 			?>
 		</table>
 		
+		<div class="prompt">
+			<?php
+				if ($noLessons != '') {
+					echo $noLessons;
+				}
+			?>
+		</div>
 	</div>
 </body>
 </html>

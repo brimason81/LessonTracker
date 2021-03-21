@@ -81,35 +81,18 @@ if (!$result) {
 // ADD ASSIGNMENT TO DATABASE 
 if (isset($_POST['assignment'])) {
     $assignment = mysqli_real_escape_string(dbLogin(), $_POST['assignment']);
-    $assignDate = mysqli_real_escape_string(dbLogin(), $_POST['assignDate']);
+    
+    $assignQuery = "INSERT INTO assignments (Student_ID, Teacher_ID, Date, Assignment) VALUES
+        ('$studentId', '$teachId', '$dateNow', '$assignment')";
 
-    if (valiDate($assignDate)) {
-        $assignQuery = "INSERT INTO assignments (Student_ID, Teacher_ID, Date, Assignment) VALUES
-            ('$studentId', '$teachId', '$assignDate', '$assignment')";
+    $assignResult = mysqli_query(dbLogin(), $assignQuery);
 
-        $assignResult = mysqli_query(dbLogin(), $assignQuery);
-
-        if (!$assignResult) {
-            die('assignment table fail');
-        } else {
-            $assignSuccess = "Assignment Added!";
-        }
+    if (!$assignResult) {
+        die('assignment table fail');
     } else {
-        $dateFormat = "Please Use Correct Format For Date (YYYY-MM-DD)";
+        $assignSuccess = "Assignment Added!";
     }
-}
-
-// QUERY ASSIGNMENT FROM DATABASE
-$assignViewQuery = "SELECT * FROM assignments WHERE Student_ID = '$studentId' AND Date >= '$dateWeek'";
-
-$assignViewResult = mysqli_query(dbLogin(), $assignViewQuery);
-
-if (!$assignViewResult) {
-    die('Assignment Query Failed');
-} else {
-    while($row = mysqli_fetch_assoc($assignViewResult)) {
-        $assignments[] = $row['Assignment'];
-    }
+    
 }
 
 // UPLOAD ITEMS TO lesson_images TABLE 
@@ -130,26 +113,33 @@ if (isset($_POST['uploadImg']) && ($_FILES['img']['name'] != '')) {
         
         move_uploaded_file($_FILES['img']['tmp_name'], $img);
     }
-} 
+}
+
+// QUERY ASSIGNMENT FROM DATABASE
+$assignViewQuery = "SELECT * FROM assignments WHERE Student_ID = '$studentId' AND Date >= '$dateWeek'";
+
+$assignViewResult = mysqli_query(dbLogin(), $assignViewQuery);
+
+if (!$assignViewResult) {
+    die('Assignment Query Failed');
+} else {
+    while($row = mysqli_fetch_assoc($assignViewResult)) {
+        $assignments[] = $row['Assignment'];
+    }
+}
 
 // CODE TO RETRIEVE IMAGE FROM lesson_Images TABLE
+$retrieve = "SELECT * FROM lesson_images WHERE Student_ID = '$studentId' AND LessonDate >= '$dateWeek'"; //";
 
-if (isset($_POST['getImages']) && isset($_POST['date'])) {
-            
-    $date = $_POST['date'];
+$imgResult = mysqli_query(dbLogin(), $retrieve);
 
-    $retrieve = "SELECT * FROM lesson_images WHERE Student_ID = '$studentId' AND LessonDate >= '$date'"; //";
+$output = "";
 
-    $imgResult = mysqli_query(dbLogin(), $retrieve);
-
-    $output = "";
-
-    if (!$imgResult) {
-        echo $output .= "There are no records for this query";
-    } else {
-        while ($row = mysqli_fetch_assoc($imgResult)) {
-            $images[] = $row['Image'];        
-        }
+if (!$imgResult) {
+    echo $output .= "There are no records for this query";
+} else {
+    while ($row = mysqli_fetch_assoc($imgResult)) {
+        $images[] = $row['Image'];        
     }
 }
 
@@ -188,8 +178,11 @@ if (isset($_POST['getImages']) && isset($_POST['date'])) {
                     ?>
                     <?php
                         foreach($images as $image) {
-                            echo "<div class=\"assignments\"><a href=\"$image\">$image</a></div>";
-                            //echo "<div class=\"assignments\"><embed src=$image width=\"auto\" height=\"auto\" type=\"application/pdf\"></div>";
+                            echo "<div class=\"assignments\" id=\"images\"><a href=\"$image\">$image</a></div>";
+                            
+                            /*  FOR TESTING:
+                                echo "<div class=\"assignments\"><embed src=$image width=\"auto\" height=\"auto\" type=\"application/pdf\"></div>";
+                            */
                         }
                     ?>
                 <div class="container-footer"></div>
@@ -214,15 +207,11 @@ if (isset($_POST['getImages']) && isset($_POST['date'])) {
             <div class="container-add">
                 <div class="container-header"><h2>ADD ASSIGNMENT</h2></div>
                     <form action="studentProfile.php" method="post">
-                        <input type="text" name="assignDate" placeholder="<?php echo $dateNow; ?>">
                         <input type="text" name="assignment" placeholder="Enter Assignment">
                         <input type="submit" value="ADD ASSIGNMENT">
                     </form> 
                 <div class="container-footer">
                     <?php
-                        if ($dateFormat != '') {
-                            echo $dateFormat;
-                        } 
                         if ($assignSuccess != '') {
                             echo $assignSuccess;
                         }
@@ -250,7 +239,7 @@ if (isset($_POST['getImages']) && isset($_POST['date'])) {
             
             <!-- FORM TO VIEW STUDENT LESSONS FROM lesson_images-->
             <div class="container-image-view">
-                <div class="container-header"><H2>SELECT A DATE RANGE <br> FOR IMAGE</H2></div>
+                <div class="container-header"><H2>VIEW OLDER <br> ASSIGNMENTS</H2></div>
                     <form action="studentProfile.php" method="post">
                         <div class="select">
                         <select name="date" id="">

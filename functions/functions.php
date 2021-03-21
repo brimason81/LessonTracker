@@ -6,7 +6,12 @@
  * - instruments():  Array not working - does not contain all columns 
  * 
  */
+   /* DB Credentials:
     
+    
+        
+    
+    */
     
     // FUNCTION TO LOGOUT
     function dbLogout() {
@@ -20,9 +25,9 @@
         
         // DB VARIABLES - THIS FUNCTION DID NOT WORK WHEN VARIABLES WERE OUTSIDE OF THE FUNCTION
         $username = "root";
-	    $password = "";
-	    $db = "Students";
-	    $server = "localhost";
+        $password = "";
+        $db = "Students";
+        $server = "localhost";
         
         $db_server = mysqli_connect($server, $username, $password);
         mysqli_select_db($db_server, $db);
@@ -42,6 +47,18 @@
 			echo "Updated!";
 		}		
 	}
+
+    function updateTeachInfo($column, $var, $id) {
+        
+        $query = "UPDATE teachers SET $column = '$var' WHERE Teacher_ID = '$id'";
+        $result = mysqli_query(dbLogin(), $query);
+
+        if (!$result) {
+            return $result = "Update Fail";
+        } else {
+            return $result = "Update Success!";
+        }
+    }
 
     // VADLIDATE DATE FORMAT
 	function valiDate($date) {

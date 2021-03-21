@@ -4,41 +4,44 @@
 ?>
 <?php
 
+    // PROMPTS/FEEDBACK
+    $badUserName = $badPhone = $badEmail = '';
+
     // POST Variables
     if (isset($_POST['userName'])) $userName = mysqli_real_escape_string(dbLogin(), $_POST['userName']);
     if (isset($_POST['fName'])) $fName = mysqli_real_escape_string(dbLogin(), $_POST['fName']); 
     if (isset($_POST['lName'])) $lName = mysqli_real_escape_string(dbLogin(), $_POST['lName']);
     
-    // VALIDATE PHONE NO.
-    if (isset($_POST['phone'])) {
-        if (validatePhone($_POST['phone'])) {
-            $phone = mysqli_real_escape_string(dbLogin(), $_POST['phone']); 
-        } else {
-            echo 'Please Enter A Valid Phone Number (555-555-5555)';
-        }
-    }    
-
-    // VALIDATE EMAIL
-    if (isset($_POST['email'])) {
-        if (validateEmail($_POST['email'])) {
-            $email = mysqli_real_escape_string(dbLogin(), $_POST['email']); 
-        } else {
-            echo '<br>' . 'Please Enter A Valid Email Address';
-        }    
-    } 
-
     // Array POST Variables
     if (isset($_POST['instruments'])) $instruments =  $_POST['instruments'];
-    
+        
     // Password and Validation
     if (isset($_POST['pass'])) $pass = mysqli_real_escape_string(dbLogin(), $_POST['pass']); 
     if (isset($_POST['passMatch'])) $passMatch = mysqli_real_escape_string(dbLogin(), $_POST['passMatch']); 
-
+    
     if (!empty($_POST)) {
-       /** */ 
+            // VALIDATE PHONE NO.
+        if (isset($_POST['phone'])) {
+            if (validatePhone($_POST['phone'])) {
+                $phone = mysqli_real_escape_string(dbLogin(), $_POST['phone']); 
+            } else {
+                $badPhone = 'Please Enter A Valid Phone Number (555-555-5555)';
+            }
+        }    
+
+        // VALIDATE EMAIL
+        if (isset($_POST['email'])) {
+            if (validateEmail($_POST['email'])) {
+                $email = mysqli_real_escape_string(dbLogin(), $_POST['email']); 
+            } else {
+                $badEmail = 'Please Enter A Valid Email Address';
+            }    
+        } 
+
+        /** */ 
         // VALIDATE UNIQUE USERNAME 
         if (!uniqueUser($userName)) {
-            echo 'That User Name Already exists in the Database';
+            $badUserName = 'That User Name Already exists in the Database';
         } else {
 
             $hashPass = passwordHash($pass);
@@ -121,8 +124,17 @@
                         <input type="text"name="fName" placeholder="First Name" required="required">
                         <input type="text"name="lName" placeholder="Last Name" required="required"> 
                         <input type="text" name="userName" placeholder="User Name" required="required">
+                        <!--FEEDBACK-->
+                        <?php if ($badUserName != '') echo $badUserName;?>
+                            
                         <input type="text"name="phone" placeholder="Phone Number" required="required"> 
+                        <!--FEEDBACK-->
+                        <?php if ($badPhone != '') echo $badPhone;?>
+
                         <input type="text"name="email" placeholder="Email" required="required"> 
+                        <!--FEEDBACK-->
+                        <?php if ($badEmail != '') echo $badEmail;?>
+
                     <div class="container-footer"></div>
                 </div>    
                         

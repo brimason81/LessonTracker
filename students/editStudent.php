@@ -14,7 +14,11 @@
 	$instArray;
 ?>
 <?php
-		
+	
+	// PROMPTS
+	$badPhone = $badEmail = $badTime = '';
+	
+	// DB QUERY
 	$query = "SELECT * FROM studentinfo WHERE Student_ID = '$id'";
 
 	$result = mysqli_query(dbLogin(), $query);
@@ -48,7 +52,7 @@
 			if (validatePhone($phone)) {
 				updateInfo('Phone', $phone, $id);
 			} else {
-				echo "Please Enter a Valid Phone Number (555-555-5555)";
+				$badPhone = "Please Enter a Valid Phone Number (555-555-5555)";
 			}
 		}
 		
@@ -58,7 +62,7 @@
 			if (validateEmail($email)) {
 				updateInfo('Email', $email, $id);
 			} else {
-				echo "Please Enter Valid Email Address";
+				$badEmail = "Please Enter Valid Email Address";
 			}
 		}
  		
@@ -68,7 +72,7 @@
 			if (validateTime($time)) {
 				updateInfo('LessonStartTime', $time, $id);
 			} else {
-				echo "Please Use the Correct Format for Start Time (HH:MM)";
+				$badTime = "Please Use the Correct Format for Start Time (HH:MM)";
 			}
 		}
  		
@@ -78,7 +82,7 @@
 			if (validateTime($time)) {
 				updateInfo('LessonEndTime', $time, $id);
 			} else {
-				echo 'Please Use the Correct Format for End Time (HH:MM)';
+				$badTime = 'Please Use the Correct Format for End Time (HH:MM)';
 			}
 		}
 		
@@ -123,12 +127,22 @@
 					<!--this doesn't update on Submit when variables are used in method; updates on the following Submit-->
 					<input type="text" placeholder="First Name" name="fName">
 					<input type="text" placeholder="Last Name" name="lName">
+
 					<input type="text" placeholder="555-555-5555" name="phone">
+					<!--FEEDBACK-->
+					<?php if ($badPhone != '') echo $badPhone;?>
+
 					<input type="text" placeholder="email@domain.com" name="email">
+					<!--FEEDBACK-->
+					<?php if ($badEmail != '') echo $badEmail;?>
 
 					<!--TIME - ADD A.M. P.M. -->
 					<input type="text" placeholder="00:00" name="startTime">
+					<!--FEEDBACK-->
+					<?php if ($badTime != '') echo $badTime;?>
 					<input type="text" placeholder="00:00" name="endTime">
+					<!--FEEDBACK-->
+					<?php if ($badTime != '') echo $badTime;?>
 					
 					<label for="">LESSON DAY</label>
 					<select name="days" id="days">

@@ -23,7 +23,7 @@
 	$twelveHourAdjust = 43200;
 	$placeholderDate = date('Y-m-d', strtotime('-5 hours'));
 
-	// PROMPTS
+	// PROMPTS/FEEDBACK
 	$emailFormat = '';
 	$dateFormat = '';
 	$timeFormat = '';
@@ -102,6 +102,7 @@
 <html>
 <head>
 	<title>Add Student Page</title>
+	
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:wght@300&display=swap">
 	<link rel="stylesheet" href="../css/formStyle.css">
 	<link rel="stylesheet" href="../css/main.css">
