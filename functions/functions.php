@@ -8,11 +8,11 @@
  */
    /* DB Credentials:
     $username = "root";
-    $password = "";
-    $db = "Students";
-    $server = "localhost";
-      
-*/
+    
+	    $password = "";
+	    $db = "Students";
+	    $server = "localhost";
+     */
     
     // FUNCTION TO LOGOUT
     function dbLogout() {

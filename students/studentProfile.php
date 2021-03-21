@@ -212,6 +212,9 @@ if (!$imgResult) {
                     </form> 
                 <div class="container-footer">
                     <?php
+                        if ($dateFormat != '') {
+                            echo $dateFormat;
+                        } 
                         if ($assignSuccess != '') {
                             echo $assignSuccess;
                         }
