@@ -16,7 +16,7 @@
 <?php
 	
 	// PROMPTS
-	$badPhone = $badEmail = $badTime = '';
+	$badPhone = $badEmail = $badTime = $noDelete = '';
 	
 	// DB QUERY
 	$query = "SELECT * FROM studentinfo WHERE Student_ID = '$id'";
@@ -29,6 +29,8 @@
 
 		$rows = mysqli_num_rows($result); 
 		$row = mysqli_fetch_assoc($result);
+
+		$name = $row['FirstName'] .  " " . $row['LastName'];
 
 		$teachId = $row['Teacher_ID'];
 		$instArray = instruments($teachId);
@@ -95,6 +97,15 @@
 			$inst = mysqli_real_escape_string(dbLogin(), $_POST['insts']); 
 			updateInfo('Instrument', $inst, $id);
 		}	
+
+		if (isset($_POST['delete']) && ($_POST['delete'] != '')) {
+			if (deleteStudent($id)) {
+				$_SESSION['delete'] = "Student Has Been Successfully Deleted.";
+				header("location:  ../teachers/teacherProfile.php");
+			} else {
+				$noDelete = "Could Not Delete " . $name;
+			}
+		}
 	}
 
 ?>
@@ -121,7 +132,7 @@
 		<form method="post" action="editStudent.php">
 			<div class="container" id="edit">
 				<div class="container-header" id="edit-head"><h2>EDIT INFO FOR<span> <?php 
-					echo "<br>" . $row['FirstName'] . " " . $row['LastName'];
+					echo "<br>" . $name;
 						?></span></h2></div>
 			
 					<!--this doesn't update on Submit when variables are used in method; updates on the following Submit-->
@@ -140,6 +151,7 @@
 					<input type="text" placeholder="00:00" name="startTime">
 					<!--FEEDBACK-->
 					<?php if ($badTime != '') echo $badTime;?>
+					
 					<input type="text" placeholder="00:00" name="endTime">
 					<!--FEEDBACK-->
 					<?php if ($badTime != '') echo $badTime;?>
@@ -166,6 +178,17 @@
 							}	
 						?>
 					</select>
+
+					<!--DELETE STUDENT-->
+					<label for="">DELETE STUDENT</label>
+					<select name="delete" id="stdnt">
+							<option value=""></option>
+							<option value="yes">Delete Student</option>
+					</select>
+
+					<!--FEEDBACK-->
+					<?php if ($noDelete != '') echo $noDelete;?>
+
 					<input type="submit" value="Submit">
 				<div class="container-footer"></div>	
 			</div>		

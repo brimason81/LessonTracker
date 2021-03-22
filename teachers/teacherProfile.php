@@ -8,6 +8,13 @@
     */
 
     session_start();
+    if (isset($_SESSION['delete'])) {
+        $deletedStudent = $_SESSION['delete'];
+    }
+    
+    // FDBCK - FIX SO DOESN'T DISPLAY AFTER FIRST VIST BACK TO PROFILE - $_GET??
+    echo $deletedStudent;
+
     include '../functions/functions.php';
 ?>
 <?php
@@ -30,10 +37,13 @@
 
         if (!$result)  {
             die('Query Failed');
+        } else if (!mysqli_num_rows($result) > 0) {
+            $noStudentsPrompt = 'You Do Not Have Any Students in the Database!' . '<br>' .  
+            'Please Click \'Add Student\' To Add Student';
         }
     }
 
-    //QUERY DB FOR TODAY'S LESSONS
+    /*QUERY DB FOR TODAY'S LESSONS
     $today = date('l', strtotime('-5 hours'));
     $dailyLessonQuery = "SELECT * FROM studentinfo WHERE Teacher_ID = '$id' AND LessonDay = '$today'";
     $dailyLessonResult = mysqli_query(dbLogin(), $dailyLessonQuery);
@@ -49,10 +59,9 @@
                 echo date('g:i', strtotime($row['LessonStartTime'])) . " - " . date('g:i', strtotime($row['LessonEndTime'])) . "<br>";
             }
         } else {
-            $noStudentsPrompt = 'You Do Not Have Any Students in the Database!' . '<br>' .  
-                'Please Click \'Add Student\' To Add Student';
+            
         }
-    }
+    }*/
     
 ?>
 <!DOCTYPE html>
